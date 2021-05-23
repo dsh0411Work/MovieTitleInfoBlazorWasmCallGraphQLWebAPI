@@ -1,0 +1,45 @@
+﻿@page "/fetchdata"
+
+<body onbeforeunload="TestDataTablesRemove('#titles')">
+
+
+
+    <h1 class="bg-light rounded text-primary mx-auto p-2">Movie Titles</h1>
+
+    <p>This component demonstrates fetching data from a GraphQL WebAPI EndPoint</p>
+
+    @if (titles == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <div class="card bg-light p-2">
+            <table id="titles" class="display table table-hover table-bordered rounded pt-2" style="width:100%">
+                <thead class="bg-primary text-white">
+                    <tr class="rounded">
+                        <th>Title</th>
+                        <th>Story</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var title in titles)
+                    {
+                        <tr>
+                            <td>@title.TitleName</td>
+                            <td>
+                                @foreach (var story in title.StoryLines)
+                                {
+                                    <p>@story.Description</p>
+
+                                }
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</body>
